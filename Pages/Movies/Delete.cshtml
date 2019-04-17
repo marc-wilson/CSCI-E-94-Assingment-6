@@ -1,0 +1,64 @@
+@page
+@model HW6MovieSharing.Pages_Movies.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Movie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Movie.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.Category)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Movie.Category)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.SharedWithFirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Movie.SharedWithFirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.SharedWithLastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Movie.SharedWithLastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.SharedWithEmailAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Movie.SharedWithEmailAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.SharedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Movie.SharedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.Sharable)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Movie.Sharable)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Movie.ID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
