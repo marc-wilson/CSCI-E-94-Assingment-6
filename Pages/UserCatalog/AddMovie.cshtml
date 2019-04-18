@@ -1,0 +1,27 @@
+﻿@page
+@model HW6MovieSharing.Pages.UserCatalog.AddMovieModel
+@{
+    ViewData["Title"] = "AddMovie";
+}
+
+<section>
+	<form method="post">
+		<div class="form-group">
+			<label for="title">Movie Title</label>
+			<input asp-for="Movie.Title" type="text" class="form-control" id="title" />
+			<span asp-validation-for="Movie.Title" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label for="category">Movie Category</label>
+			<input asp-for="Movie.Category" type="text" class="form-control" id="category" />
+			<span asp-validation-for="Movie.Category" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label for="sharable" class="form-check-label">Sharable</label>
+			<input type="checkbox" asp-for="Movie.Sharable" class="form-check-input" id="sharable" />
+			<span asp-validation-for="Movie.Sharable" class="text-danger"></span>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</section>
+

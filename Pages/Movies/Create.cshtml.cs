@@ -11,9 +11,9 @@ namespace HW6MovieSharing.Pages_Movies
 {
     public class CreateModel : PageModel
     {
-        private readonly HW6MovieSharing.Models.MoviesDbContext _context;
+        private readonly MoviesDbContext _context;
 
-        public CreateModel(HW6MovieSharing.Models.MoviesDbContext context)
+        public CreateModel(MoviesDbContext context)
         {
             _context = context;
         }
