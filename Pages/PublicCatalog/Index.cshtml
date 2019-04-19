@@ -4,5 +4,44 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<section>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th></th>
+				<th></th>
+				<th scope="col">Title</th>
+				<th scope="col">Category</th>
+				<th scope="col">Shared with First Name</th>
+				<th scope="col">Shared with Last Name</th>
+				<th scope="col">Shared with Email</th>
+				<th scope="col">Shared with Date</th>
+				<th scope="col">Sharable</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var movie in Model.Movies)
+			{
+				<tr>
+					<td>
+						<form method="post">
+							<input asp-for="@movie.ID" id="id" type="hidden" name="id" />
+							<button type="submit" class="btn btn-warning">Request to Barrow</button>
+						</form>
+					</td>
+					<td>
+						<a asp-page="./UpdateMovie" asp-route-id="@movie.ID" class="btn btn-default">Update</a>
+					</td>
+					<td>@Html.DisplayFor(modelItem => movie.Title)</td>
+					<td>@Html.DisplayFor(modelItem => movie.Category)</td>
+					<td>@Html.DisplayFor(modelItem => movie.SharedWithFirstName)</td>
+					<td>@Html.DisplayFor(modelItem => movie.SharedWithLastName)</td>
+					<td>@Html.DisplayFor(modelItem => movie.SharedWithEmailAddress)</td>
+					<td>@Html.DisplayFor(modelItem => movie.SharedDate)</td>
+					<td>@Html.DisplayFor(modelItem => movie.Sharable)</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</section>
 

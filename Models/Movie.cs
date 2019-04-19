@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HW6MovieSharing.Models
 {
@@ -23,5 +20,7 @@ namespace HW6MovieSharing.Models
 		public string SharedWithEmailAddress { get; set; }
 		public DateTime SharedDate { get; set; }
 		public bool Sharable { get; set; }
+		[Required]
+		public string OwnerObjectIdentifier { get; set; }
 	}
 }

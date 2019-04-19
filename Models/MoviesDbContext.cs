@@ -9,7 +9,8 @@ namespace HW6MovieSharing.Models
 	public class MoviesDbContext : DbContext
 	{
 		public MoviesDbContext(DbContextOptions<MoviesDbContext> options) : base(options)
-		{}
+		{ }
 		public DbSet<Movie> Movie { get; set; }
+		public DbSet<BarrowRequest> BarrowRequest { get; set; }
 	}
 }

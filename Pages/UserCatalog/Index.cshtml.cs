@@ -14,7 +14,8 @@ namespace HW6MovieSharing.Pages.UserCatalog
 		public IList<Movie> Movies { get; set; }
 		public async Task OnGetAsync()
 		{
-			Movies = await DbContext.Movie.Where(m => m.Title != null).ToListAsync();
+			var currenObjectIdentifier = AuthenticatedUserInfo.ObjectIdentifier;
+			Movies = await DbContext.Movie.Where(m => m.OwnerObjectIdentifier == currenObjectIdentifier).ToListAsync();
 		}
 		public async Task<IActionResult> OnPostAsync(int? id)
 		{
@@ -23,6 +24,7 @@ namespace HW6MovieSharing.Pages.UserCatalog
 				return NotFound();
 			}
 			var movie = await DbContext.Movie.SingleOrDefaultAsync<Movie>(m => m.ID == id);
+			// TODO: Make sure the movie is owned by the current logged in user
 			if (movie == null)
 			{
 				return NotFound();
