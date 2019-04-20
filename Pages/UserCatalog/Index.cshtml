@@ -11,7 +11,6 @@
 		<thead>
 			<tr>
 				<th></th>
-				<th></th>
 				<th scope="col">Title</th>
 				<th scope="col">Category</th>
 				<th scope="col">Shared with First Name</th>
@@ -26,13 +25,18 @@
 			{
 			<tr>
 				<td>
-					<form method="post">
-						<input asp-for="@movie.ID" id="id" type="hidden" name="id" />
-						<button type="submit" class="btn btn-danger">Delete</button>
-					</form>
-				</td>
-				<td>
-					<a asp-page="./UpdateMovie" asp-route-id="@movie.ID" class="btn btn-default">Update</a>
+					@if (movie.Status == Enums.MovieStatuses.Available)
+					{
+						<form method="post">
+							<input asp-for="@movie.ID" id="id" type="hidden" name="id" />
+							<button type="submit" class="btn btn-danger">Delete</button>
+						</form>
+						<a asp-page="./UpdateMovie" asp-route-id="@movie.ID" class="btn btn-default">Update</a>
+					}
+					@if (movie.Status == Enums.MovieStatuses.ReturnRequested)
+					{
+						<a asp-page="./Requests" class="btn btn-default">Return Requested</a>
+					}
 				</td>
 				<td>@Html.DisplayFor(modelItem => movie.Title)</td>
 				<td>@Html.DisplayFor(modelItem => movie.Category)</td>

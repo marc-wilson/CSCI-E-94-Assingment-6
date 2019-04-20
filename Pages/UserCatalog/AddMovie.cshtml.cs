@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using HW6MovieSharing.Enums;
 using HW6MovieSharing.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +15,7 @@ namespace HW6MovieSharing.Pages.UserCatalog
 		public async Task<IActionResult> OnPostAsync()
 		{
 			Movie.OwnerObjectIdentifier = AuthenticatedUserInfo.ObjectIdentifier;
+			Movie.Status = MovieStatuses.Available;
 			// TODO: Validate Model
 			DbContext.Movie.Add(Movie);
 			await DbContext.SaveChangesAsync();

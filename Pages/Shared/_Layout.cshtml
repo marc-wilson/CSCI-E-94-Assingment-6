@@ -29,11 +29,13 @@
                 <a asp-page="/Index" class="navbar-brand">HW6MovieSharing</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-page="/Index">Home</a></li>
-                    <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
-                </ul>
+				<ul class="nav navbar-nav">
+					<li><a asp-page="/Index">Home</a></li>
+					<li><a asp-page="/UserCatalog/Index">Manage Catalog</a></li>
+					<li><a asp-page="/UserCatalog/Requests">Manage Requests</a></li>
+					<li><a asp-page="/UserCatalog/BarrowedMovies">Manage Barrowed Movies</a></li>
+					<li><a asp-page="/PublicCatalog/Index">View Catalog</a></li>
+				</ul>
                 <partial name="_LoginPartial" />
             </div>
         </div>

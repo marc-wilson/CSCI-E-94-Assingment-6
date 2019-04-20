@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HW6MovieSharing.Enums;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace HW6MovieSharing.Models
@@ -22,5 +23,18 @@ namespace HW6MovieSharing.Models
 		public bool Sharable { get; set; }
 		[Required]
 		public string OwnerObjectIdentifier { get; set; }
+		public string BarrowedByObjectIdentifier { get; set; }
+		public MovieStatuses Status { get; set; }
+
+		public void SetMovieAsReturned()
+		{
+			BarrowedByObjectIdentifier = null;
+			SharedWithFirstName = null;
+			SharedWithLastName = null;
+			SharedWithEmailAddress = null;
+			Status = MovieStatuses.Available;
+		}
 	}
+
+	
 }

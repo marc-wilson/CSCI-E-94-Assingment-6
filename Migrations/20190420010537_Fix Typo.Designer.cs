@@ -4,14 +4,16 @@ using HW6MovieSharing.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HW6MovieSharing.Migrations
 {
     [DbContext(typeof(MoviesDbContext))]
-    partial class MoviesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190420010537_Fix Typo")]
+    partial class FixTypo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,13 +35,7 @@ namespace HW6MovieSharing.Migrations
 
                     b.Property<string>("MovieTitle");
 
-                    b.Property<string>("RequestedByEmailAddress");
-
-                    b.Property<string>("RequestedByFirstName");
-
-                    b.Property<string>("RequestedByLastName");
-
-                    b.Property<string>("RequestedByObjectIdentifier");
+                    b.Property<string>("RequestedBy");
 
                     b.Property<int>("Status");
 
@@ -53,8 +49,6 @@ namespace HW6MovieSharing.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("BarrowedByObjectIdentifier");
 
                     b.Property<string>("Category")
                         .IsRequired()
@@ -75,8 +69,6 @@ namespace HW6MovieSharing.Migrations
 
                     b.Property<string>("SharedWithLastName")
                         .HasMaxLength(256);
-
-                    b.Property<int>("Status");
 
                     b.Property<string>("Title")
                         .IsRequired()

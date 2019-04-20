@@ -1,4 +1,5 @@
-﻿using HW6MovieSharing.Models;
+﻿using HW6MovieSharing.Enums;
+using HW6MovieSharing.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -14,15 +15,11 @@ namespace HW6MovieSharing.Pages.UserCatalog
 		public IList<Movie> Movies { get; set; }
 		public async Task OnGetAsync()
 		{
-			var currenObjectIdentifier = AuthenticatedUserInfo.ObjectIdentifier;
-			Movies = await DbContext.Movie.Where(m => m.OwnerObjectIdentifier == currenObjectIdentifier).ToListAsync();
+			Movies = await DbContext.Movie.Where(m => m.OwnerObjectIdentifier == AuthenticatedUserInfo.ObjectIdentifier).ToListAsync();
 		}
 		public async Task<IActionResult> OnPostAsync(int? id)
 		{
-			if (id == null)
-			{
-				return NotFound();
-			}
+			if (id == null) return NotFound();
 			var movie = await DbContext.Movie.SingleOrDefaultAsync<Movie>(m => m.ID == id);
 			// TODO: Make sure the movie is owned by the current logged in user
 			if (movie == null)

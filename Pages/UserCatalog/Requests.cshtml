@@ -1,0 +1,61 @@
+﻿@page
+@model HW6MovieSharing.Pages.UserCatalog.RequestsModel
+@{
+    ViewData["Title"] = "Requests";
+}
+
+<section>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th></th>
+				<th scope="col">MovieID</th>
+				<th scope="col">Movie Title</th>
+				<th scope="col">Requested By</th>
+				<th scope="col">Date Requested</th>
+				<th scope="col">Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var request in Model.Requests)
+			{
+			<tr>
+				<td style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 10px; align-items: center;">
+					@if (request.Status == Enums.MovieStatuses.RequestCompleted || request.Status == Enums.MovieStatuses.BarrowRejected)
+					{
+						<form method="post">
+							<input asp-for="@request.ID" id="id" type="hidden" name="id" />
+							<button type="submit" class="btn btn-danger" asp-page-handler="DeleteRequest">Delete Request</button>
+						</form>
+					}
+					@if (request.Status == Enums.MovieStatuses.ReturnRequested)
+					{
+						<form method="post">
+							<input asp-for="@request.ID" id="id" type="hidden" name="id" />
+							<button type="submit" class="btn btn-success" asp-page-handler="MarkAsReturned">Mark as Returned</button>
+						</form>
+					}
+					@if (request.Status == Enums.MovieStatuses.BarrowRequested)
+					{
+						<form method="post">
+							<input asp-for="@request.ID" id="id" type="hidden" name="id" />
+							<button type="submit" class="btn btn-success" asp-page-handler="ApproveRequest">Approve</button>
+						</form>
+						<form method="post">
+							<input asp-for="@request.ID" id="id" type="hidden" name="id" />
+							<button type="submit" class="btn btn-danger" asp-page-handler="RejectRequest">Reject</button>
+						</form>
+					}
+				</td>
+				
+				<td>@Html.DisplayFor(modelItem => request.ID)</td>
+				<td>@Html.DisplayFor(modelItem => request.MovieTitle)</td>
+				<td>@Html.DisplayFor(modelItem => request.RequestedByObjectIdentifier)</td>
+				<td>@Html.DisplayFor(modelItem => request.DateRequested)</td>
+				<td>@Html.DisplayFor(modelItem => request.Status)</td>
+			</tr>
+			}
+		</tbody>
+	</table>
+</section>
+
