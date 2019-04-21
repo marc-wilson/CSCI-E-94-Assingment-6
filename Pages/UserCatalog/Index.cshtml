@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-<section>
+<section style="margin-top: 30px;">
 	<div>
 		<a href="/UserCatalog/AddMovie" class="btn btn-primary">Add Movie</a>
 	</div>
@@ -23,29 +23,33 @@
 		<tbody>
 			@foreach (var movie in Model.Movies)
 			{
-			<tr>
-				<td>
-					@if (movie.Status == Enums.MovieStatuses.Available)
-					{
-						<form method="post">
-							<input asp-for="@movie.ID" id="id" type="hidden" name="id" />
-							<button type="submit" class="btn btn-danger">Delete</button>
-						</form>
-						<a asp-page="./UpdateMovie" asp-route-id="@movie.ID" class="btn btn-default">Update</a>
-					}
-					@if (movie.Status == Enums.MovieStatuses.ReturnRequested)
-					{
-						<a asp-page="./Requests" class="btn btn-default">Return Requested</a>
-					}
-				</td>
-				<td>@Html.DisplayFor(modelItem => movie.Title)</td>
-				<td>@Html.DisplayFor(modelItem => movie.Category)</td>
-				<td>@Html.DisplayFor(modelItem => movie.SharedWithFirstName)</td>
-				<td>@Html.DisplayFor(modelItem => movie.SharedWithLastName)</td>
-				<td>@Html.DisplayFor(modelItem => movie.SharedWithEmailAddress)</td>
-				<td>@Html.DisplayFor(modelItem => movie.SharedDate)</td>
-				<td>@Html.DisplayFor(modelItem => movie.Sharable)</td>
-			</tr>
+				<tr>
+					<td style="display: grid; grid-template-columns: repeat(2, 1fr); align-items: center;">
+						@if (movie.Status == Enums.MovieStatuses.Available)
+						{
+							<form method="post">
+								<input asp-for="@movie.ID" id="id" type="hidden" name="id" />
+								<button type="submit" class="btn btn-danger">Delete</button>
+							</form>
+							<a asp-page="./UpdateMovie" asp-route-id="@movie.ID" class="btn btn-default">Update</a>
+						}
+						@if (movie.Status == Enums.MovieStatuses.ReturnRequested)
+						{
+							<a asp-page="./Requests" class="btn btn-default">Return Requested</a>
+						}
+						@if (movie.Status != Enums.MovieStatuses.ReturnRequested && movie.Status != Enums.MovieStatuses.Available)
+						{
+							<div style="grid-column:0 / 2">@Html.DisplayFor(modelItem => movie.Status)</div>
+						}
+					</td>
+					<td>@Html.DisplayFor(modelItem => movie.Title)</td>
+					<td>@Html.DisplayFor(modelItem => movie.Category)</td>
+					<td>@Html.DisplayFor(modelItem => movie.SharedWithFirstName)</td>
+					<td>@Html.DisplayFor(modelItem => movie.SharedWithLastName)</td>
+					<td>@Html.DisplayFor(modelItem => movie.SharedWithEmailAddress)</td>
+					<td>@Html.DisplayFor(modelItem => movie.SharedDate)</td>
+					<td>@Html.DisplayFor(modelItem => movie.Sharable)</td>
+				</tr>
 			}
 		</tbody>
 	</table>

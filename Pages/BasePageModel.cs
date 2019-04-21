@@ -7,11 +7,22 @@ using System.Threading.Tasks;
 
 namespace HW6MovieSharing.Pages
 {
+	/// <summary>
+	/// Base page model that derives from page model
+	/// </summary>
 	public class BasePageModel : PageModel
 	{
+		/// <summary>
+		/// DB Context
+		/// </summary>
 		protected MoviesDbContext DbContext { get; }
+		/// <summary>
+		/// Decoded Claims
+		/// </summary>
 		private DecodedClaims _decodedClaims = null;
-
+		/// <summary>
+		/// Authenticated User Info
+		/// </summary>
 		public DecodedClaims AuthenticatedUserInfo
 		{
 			get
@@ -23,6 +34,10 @@ namespace HW6MovieSharing.Pages
 				return _decodedClaims;
 			}
 		}
+		/// <summary>
+		/// Initializer
+		/// </summary>
+		/// <param name="context"></param>
 		public BasePageModel(MoviesDbContext context)
 		{
 			DbContext = context;

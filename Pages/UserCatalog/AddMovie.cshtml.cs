@@ -5,20 +5,37 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HW6MovieSharing.Pages.UserCatalog
 {
+	/// <summary>
+	/// Add Movie model
+	/// </summary>
 	public class AddMovieModel : BasePageModel
 	{
+		/// <summary>
+		/// Initializer
+		/// </summary>
+		/// <param name="context"></param>
 		public AddMovieModel(MoviesDbContext context) : base(context) { }
+		/// <summary>
+		/// Movie to add
+		/// </summary>
 		[BindProperty]
 		public Movie Movie { get; set; }
-		public async Task OnGetAsync() { }
 
+		/// <summary>
+		/// Adds a movie
+		/// </summary>
+		/// <returns></returns>
 		public async Task<IActionResult> OnPostAsync()
 		{
+			// Get the authenticated user info
 			Movie.OwnerObjectIdentifier = AuthenticatedUserInfo.ObjectIdentifier;
+			// Set the movie as available
 			Movie.Status = MovieStatuses.Available;
-			// TODO: Validate Model
+			// Add the movie to the db
 			DbContext.Movie.Add(Movie);
+			// Save the db changes
 			await DbContext.SaveChangesAsync();
+			// Redirect back to the catalog
 			return RedirectToPage("./Index");
 		}
 	}

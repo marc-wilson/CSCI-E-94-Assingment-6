@@ -4,16 +4,16 @@
     ViewData["Title"] = "AddMovie";
 }
 
-<section>
+<section style="margin-top: 30px;">
 	<form method="post">
 		<div class="form-group">
 			<label for="title">Movie Title</label>
-			<input asp-for="Movie.Title" type="text" class="form-control" id="title" />
+			<input asp-for="Movie.Title" type="text" class="form-control" id="title" maxlength="1024" />
 			<span asp-validation-for="Movie.Title" class="text-danger"></span>
 		</div>
 		<div class="form-group">
 			<label for="category">Movie Category</label>
-			<input asp-for="Movie.Category" type="text" class="form-control" id="category" />
+			<input asp-for="Movie.Category" type="text" class="form-control" id="category" maxlength="256" />
 			<span asp-validation-for="Movie.Category" class="text-danger"></span>
 		</div>
 		<div class="form-group">
